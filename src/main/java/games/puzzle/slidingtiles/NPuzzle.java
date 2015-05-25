@@ -13,6 +13,13 @@
  */
 package games.puzzle.slidingtiles;
 
+import java.io.File;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
 import games.puzzle.slidingtiles.player.BetterAI;
 import games.puzzle.slidingtiles.player.BetterAI.Algorithm;
 import games.puzzle.slidingtiles.player.BetterAI.Heuristic;
@@ -28,12 +35,6 @@ import games.strategy.grid.ui.GridGameFrame;
 import games.strategy.grid.ui.GridGameMenu;
 import games.strategy.grid.ui.GridMapData;
 import games.strategy.grid.ui.GridMapPanel;
-
-import java.io.File;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Main class responsible for an n-puzzle game.
