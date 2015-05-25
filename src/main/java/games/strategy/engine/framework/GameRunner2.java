@@ -1081,14 +1081,7 @@ public class GameRunner2
 	
 	public static File getUserRootFolder()
 	{
-		final File userHome = new File(System.getProperties().getProperty("user.home"));
-		// the default
-		File rootDir;
-		if (GameRunner.isMac())
-			rootDir = new File(new File(userHome, "Documents"), "triplea");
-		else
-			rootDir = new File(userHome, "triplea");
-		return rootDir;
+		return new File(".");
 	}
 	
 	public static File getUserMapsFolder()
@@ -1112,58 +1105,59 @@ public class GameRunner2
 	 */
 	public static File getRootFolder()
 	{
-		// we know that the class file is in a directory one above the games root folder
-		// so navigate up from the class file, and we have root.
-		// find the url of our class
-		final URL url = GameRunner2.class.getResource("GameRunner2.class");
-		// we want to move up 1 directory for each
-		// package
-		final int moveUpCount = GameRunner2.class.getName().split("\\.").length + 1;
-		String fileName = url.getFile();
-		try
-		{
-			// deal with spaces in the file name which would be url encoded
-			fileName = URLDecoder.decode(fileName, "UTF-8");
-		} catch (final UnsupportedEncodingException e)
-		{
-			e.printStackTrace();
-		}
-		final String tripleaJarName = "triplea.jar!";
-		final String tripleaJarNameWithEngineVersion = getTripleaJarWithEngineVersionStringPath();
-		// we are in a jar file
-		if (fileName.indexOf(tripleaJarName) != -1)
-		{
-			final String subString = fileName.substring("file:/".length() - (GameRunner.isWindows() ? 0 : 1), fileName.indexOf(tripleaJarName) - 1);
-			final File f = new File(subString).getParentFile();
-			if (!f.exists())
-			{
-				throw new IllegalStateException("File not found:" + f);
-			}
-			return f;
-		}
-		else if (fileName.indexOf(tripleaJarNameWithEngineVersion) != -1)
-		{
-			final String subString = fileName.substring("file:/".length() - (GameRunner.isWindows() ? 0 : 1), fileName.indexOf(tripleaJarNameWithEngineVersion) - 1);
-			final File f = new File(subString).getParentFile();
-			if (!f.exists())
-			{
-				throw new IllegalStateException("File not found:" + f);
-			}
-			return f;
-		}
-		else
-		{
-			File f = new File(fileName);
-			for (int i = 0; i < moveUpCount; i++)
-			{
-				f = f.getParentFile();
-			}
-			if (!f.exists())
-			{
-				System.err.println("Could not find root folder, does  not exist:" + f);
-				return new File(System.getProperties().getProperty("user.dir"));
-			}
-			return f;
-		}
+		return new File("./src/main/resources");
+//		// we know that the class file is in a directory one above the games root folder
+//		// so navigate up from the class file, and we have root.
+//		// find the url of our class
+//		final URL url = GameRunner2.class.getResource("GameRunner2.class");
+//		// we want to move up 1 directory for each
+//		// package
+//		final int moveUpCount = GameRunner2.class.getName().split("\\.").length + 1;
+//		String fileName = url.getFile();
+//		try
+//		{
+//			// deal with spaces in the file name which would be url encoded
+//			fileName = URLDecoder.decode(fileName, "UTF-8");
+//		} catch (final UnsupportedEncodingException e)
+//		{
+//			e.printStackTrace();
+//		}
+//		final String tripleaJarName = "triplea.jar!";
+//		final String tripleaJarNameWithEngineVersion = getTripleaJarWithEngineVersionStringPath();
+//		// we are in a jar file
+//		if (fileName.indexOf(tripleaJarName) != -1)
+//		{
+//			final String subString = fileName.substring("file:/".length() - (GameRunner.isWindows() ? 0 : 1), fileName.indexOf(tripleaJarName) - 1);
+//			final File f = new File(subString).getParentFile();
+//			if (!f.exists())
+//			{
+//				throw new IllegalStateException("File not found:" + f);
+//			}
+//			return f;
+//		}
+//		else if (fileName.indexOf(tripleaJarNameWithEngineVersion) != -1)
+//		{
+//			final String subString = fileName.substring("file:/".length() - (GameRunner.isWindows() ? 0 : 1), fileName.indexOf(tripleaJarNameWithEngineVersion) - 1);
+//			final File f = new File(subString).getParentFile();
+//			if (!f.exists())
+//			{
+//				throw new IllegalStateException("File not found:" + f);
+//			}
+//			return f;
+//		}
+//		else
+//		{
+//			File f = new File(fileName);
+//			for (int i = 0; i < moveUpCount; i++)
+//			{
+//				f = f.getParentFile();
+//			}
+//			if (!f.exists())
+//			{
+//				System.err.println("Could not find root folder, does  not exist:" + f);
+//				return new File(System.getProperties().getProperty("user.dir"));
+//			}
+//			return f;
+//		}
 	}
 }

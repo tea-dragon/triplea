@@ -1,15 +1,15 @@
 package games.strategy.engine.data;
 
-import games.strategy.triplea.xml.LoadGameUtil;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
 import java.util.Collection;
 
+import games.strategy.triplea.xml.LoadGameUtil;
 import junit.framework.TestCase;
 
 /**
@@ -29,7 +29,7 @@ public class ChangeTripleATest extends TestCase
 	@Override
 	public void setUp() throws Exception
 	{
-		m_data = LoadGameUtil.loadGame("Big World : 1942", "big_world" + File.separator + "games" + File.separator + "big_world_1942.xml");
+		m_data = LoadGameUtil.loadGame("Big World : 1942", "/maps" + File.separator + "big_world" + File.separator + "games" + File.separator + "big_world_1942.xml");
 	}
 	
 	private Change serialize(final Change aChange) throws Exception

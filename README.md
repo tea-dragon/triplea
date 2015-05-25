@@ -7,3 +7,7 @@ This fork / clone exists to provide an easy, git-based version for me to tinker 
 support for everything less than java 8, use my own coding style, and make arbitrarily large changes or focus mostly
 on modes that I personally care about. It is not intended to replace the original in any capacity (except for maybe a
 few friends).
+
+## license -- warning
+
+This project uses GPL, as that was the license of the project it was forked from.
